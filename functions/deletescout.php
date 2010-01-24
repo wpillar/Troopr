@@ -11,6 +11,8 @@ else{
     session_start();
     mysql_query("DELETE FROM scouts WHERE sid=".$_GET['sid']) or die(mysql_error());
     mysql_query("DELETE FROM badge_tracker WHERE sid=".$_GET['sid']) or die(mysql_error());
+    mysql_query("DELETE FROM patrols_scouts WHERE sid=".$_GET['sid']) or die(mysql_error());
+    mysql_query("DELETE FROM event_attend WHERE sid=".$_GET['sid']) or die(mysql_error());
     mysql_query("INSERT INTO activity_logs (username, action, datetime) VALUES ('".$_SESSION['username']."', 'Deleted Scout (".str_rot13($_GET['firstname'])." ".str_rot13($_GET['lastname']).")', '".date("Y-m-d - H:i:s")."S')") or die(mysql_error());
     header("Location: ../scouts.php");
 }
